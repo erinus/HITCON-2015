@@ -34,7 +34,7 @@ def game2(line):
 		port.flush()
 
 def game3(line):
-	pass	
+	pass
 
 def main():
 	# enter your choice here
