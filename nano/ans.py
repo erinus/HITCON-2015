@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
+import re
 import serial
 import time
 
@@ -29,16 +30,54 @@ def game1(line):
 
 def game2(line):
 	if line == 'Nano$ enter your answer:':
+		global lines
+		lines = lines[-1:]
 		# write you rules here
-		port.write('%d\n' % 10)
+		line = lines[0].replace(' ', '').replace('Nano$', '').replace('=?', '')
+		while True:
+			match_line = re.search(r'(\d+\*\d+)', line)
+			if match_line:
+				for group in match_line.groups():
+					print group
+					match_prod = re.search(r'(?P<num1>\d+)\*(?P<num2>\d+)', group)
+					num1 = int(match_prod.group('num1'))
+					num2 = int(match_prod.group('num2'))
+					line = line.replace(group, str(num1 * num2))
+			else:
+				break
+		total = 0
+		print line
+		while True:
+			if '+' not in line and '-' not in line:
+				# if not line:
+				# 	total = int(line)
+				break
+			match_calc = re.search(r'\+\d+', line)
+			if match_calc:
+				item = match_calc.group(0)
+				line = line.replace(item, '')
+				total = total + int(item)
+				print item
+			match_calc = re.search(r'-\d+', line)
+			if match_calc:
+				item = match_calc.group(0)
+				line = line.replace(item, '')
+				total = total + int(item)
+				print item
+			match_calc = re.search(r'\d+', line)
+			if match_calc:
+				item = match_calc.group(0)
+				line = line.replace(item, '')
+				total = total + int(item)
+				print item
+		port.write('%d\n' % total)
 		port.flush()
-
-def game3(line):
-	pass
+	else:
+		lines.append(line)
 
 def main():
 	# enter your choice here
-	choice = '0'
+	choice = '2'
 	# enter your team token here
 	team_token = '12345678'
 	while True:

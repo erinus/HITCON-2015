@@ -1,3 +1,5 @@
+#include "TrueRandom.h"
+
 #include "sha1.h"
 
 #include "nano.h"
@@ -12,6 +14,7 @@ int timestamp = 0;
 
 void setup() {
 
+	randomSeed(analogRead(0));
 	Serial.begin(115200);
 
 	Serial.print("HITCON 2015 NANO GAME\n");
@@ -114,8 +117,8 @@ void loop() {
 			break;
 
 		case 1000 + 2:
-			if (millis() - timestamp > 2 * 1000) {
-				Serial.print("Nano$ timeout (2 seconds)\n");
+			if (millis() - timestamp > 1 * 1000) {
+				Serial.print("Nano$ timeout (1 seconds)\n");
 				Serial.print("Nano$ finish\n");
 				scene_id = 9999;
 				break;

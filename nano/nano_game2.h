@@ -6,67 +6,41 @@ int game2_total = 0;
 
 void game2_init() {
 
-	randomSeed(analogRead(0));
 	String expr = "";
-	for (int index = 0; index < 3; index++) {
-		int mode = 0;
-		if (index != 0) {
-			mode = TrueRandom.random(3) + 1;
-			switch (mode) {
+	int num0;
+	int num1;
+	int num2;
+	for (int index = 0; index < 5; index++) {
+		if (index == 0) {
+			switch (TrueRandom.random(2)) {
+				case 0:
+					num1 = TrueRandom.random(10) + 1;
+					num2 = TrueRandom.random(10) + 1;
+					game2_total = num1 * num2;
+					expr = expr + String(num1) + " * " + String(num2);
+					break;
 				case 1:
-					expr = expr + " + ";
-					break;
-				case 2:
-					expr = expr + " - ";
-					break;
-				case 3:
-					expr = expr + " * ";
+					num0 = TrueRandom.random(10) + 1;
+					game2_total = num0;
+					expr = expr + String(num0);
 					break;
 			}
+			continue;
 		}
-		int num1 = 0;
-		int num2 = 0;
+		num0 = TrueRandom.random(20) + 1;
 		switch (TrueRandom.random(2)) {
-			case 0:
-				num1 = TrueRandom.random(10);
-				num2 = TrueRandom.random(10);
-				switch (mode) {
-					case 0:
-						game2_total = num1 * num2;
-						break;
-					case 1:
-						game2_total = game2_total + num1 * num2;
-						break;
-					case 2:
-						game2_total = game2_total - num1 * num2;
-						break;
-					case 3:
-						game2_total = game2_total * num1 * num2;
-						break;
-				}
-				expr = expr + String(num1) + " * " + String(num2);
-				break;
 			case 1:
-				num1 = TrueRandom.random(10);
-				switch (mode) {
-					case 0:
-						game2_total = num1;
-						break;
-					case 1:
-						game2_total = game2_total + num1;
-						break;
-					case 2:
-						game2_total = game2_total - num1;
-						break;
-					case 3:
-						game2_total = game2_total * num1;
-						break;
-				}
-				expr = expr + String(num1);
+				game2_total = game2_total + num0;
+				expr = expr + " + " + String(num0);
+				break;
+			case 2:
+				game2_total = game2_total - num0;
+				expr = expr + " - " + String(num0);
 				break;
 		}
 	}
-	Serial.print("Nano$ " + expr + " = " + String(game2_total) + "\n");
+	Serial.print("Nano$ " + String(game2_total) + "\n");
+	Serial.print("Nano$ " + expr + " = ?\n");
 
 }
 
