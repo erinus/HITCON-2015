@@ -29,11 +29,11 @@ void game2_init() {
 		}
 		num0 = TrueRandom.random(20) + 1;
 		switch (TrueRandom.random(2)) {
-			case 1:
+			case 0:
 				game2_total = game2_total + num0;
 				expr = expr + " + " + String(num0);
 				break;
-			case 2:
+			case 1:
 				game2_total = game2_total - num0;
 				expr = expr + " - " + String(num0);
 				break;
