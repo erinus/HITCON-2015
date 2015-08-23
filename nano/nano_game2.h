@@ -1,7 +1,5 @@
 #include "TrueRandom.h"
 
-uint8_t game2_secret[] = { 0x27, 0x3A, 0x9C, 0x1E, 0x2D, 0x38, 0x0B, 0x48 };
-
 int game2_total = 0;
 
 void game2_init() {
@@ -39,7 +37,6 @@ void game2_init() {
 				break;
 		}
 	}
-	Serial.print("Nano$ " + String(game2_total) + "\n");
 	Serial.print("Nano$ " + expr + " = ?\n");
 
 }
@@ -52,10 +49,7 @@ void game2() {
 			Serial.print("User$ my answer is " + answer + "\n");
 			Serial.print("\n");
 			if (answer.toInt() == game2_total) {
-				for (int index = 0; index < 8; index++) {
-					ticket += String(game2_secret[index] ^ team_token[index], HEX);
-				}
-				Serial.print("Nano$ ticket is " + ticket + "\n");
+				Serial.print("Nano$ key is 273A9C1E2D380B48\n");
 			} else {
 				Serial.print("Nano$ wrong answer\n");
 			}

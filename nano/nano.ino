@@ -8,7 +8,7 @@
 #include "nano_game1.h"
 #include "nano_game2.h"
 
-int scene_id = 0;
+int scene_id = 1;
 
 int timestamp = 0;
 
@@ -19,27 +19,12 @@ void setup() {
 
 	Serial.print("HITCON 2015 NANO GAME\n");
 	Serial.print("\n");
-	Serial.print("Nano$ enter your team token:\n");
-	Serial.print("\n");
 
 }
 
 void loop() {
 
 	switch (scene_id) {
-
-		case 0:
-			if (Serial.available()) {
-				char read = Serial.read();
-				if (read == '\n') {
-					Serial.print("User$ my team token is " + team_token + "\n");
-					Serial.print("\n");
-					scene_id = 1;
-				} else {
-					team_token += read;
-				}
-			}
-			break;
 
 		case 1:
 			Serial.print("Nano$ [0] Morse\n");

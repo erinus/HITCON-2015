@@ -1,7 +1,5 @@
 #include "TrueRandom.h"
 
-uint8_t game1_secret[] = { 0x3D, 0x52, 0xCB, 0x74, 0x6F, 0x9E, 0x6C, 0x83 };
-
 int game1_maze_myposx = 0;
 int game1_maze_myposy = 0;
 
@@ -319,10 +317,7 @@ void game1() {
 						}
 					}
 					if (game1_maze_myposx == game1_maze_myansx && game1_maze_myposy == game1_maze_myansy) {
-						for (int index = 0; index < 8; index++) {
-							ticket += String(game1_secret[index] ^ team_token[index], HEX);
-						}
-						Serial.print("Nano$ ticket is " + ticket + "\n");
+						Serial.print("Nano$ key is 3D52CB746F9E6C83\n");
 						break;
 					}
 					game1_maze_output();
@@ -336,10 +331,7 @@ void game1() {
 						}
 					}
 					if (game1_maze_myposx == game1_maze_myansx && game1_maze_myposy == game1_maze_myansy) {
-						for (int index = 0; index < 8; index++) {
-							ticket += String(game1_secret[index] ^ team_token[index], HEX);
-						}
-						Serial.print("Nano$ ticket is " + ticket + "\n");
+						Serial.print("Nano$ key is 3D52CB746F9E6C83\n");
 						break;
 					}
 					game1_maze_output();
@@ -353,10 +345,7 @@ void game1() {
 						}
 					}
 					if (game1_maze_myposx == game1_maze_myansx && game1_maze_myposy == game1_maze_myansy) {
-						for (int index = 0; index < 8; index++) {
-							ticket += String(game1_secret[index] ^ team_token[index], HEX);
-						}
-						Serial.print("Nano$ ticket is " + ticket + "\n");
+						Serial.print("Nano$ key is 3D52CB746F9E6C83\n");
 						break;
 					}
 					game1_maze_output();
@@ -370,10 +359,7 @@ void game1() {
 						}
 					}
 					if (game1_maze_myposx == game1_maze_myansx && game1_maze_myposy == game1_maze_myansy) {
-						for (int index = 0; index < 8; index++) {
-							ticket += String(game1_secret[index] ^ team_token[index], HEX);
-						}
-						Serial.print("Nano$ ticket is " + ticket + "\n");
+						Serial.print("Nano$ key is 3D52CB746F9E6C83\n");
 						break;
 					}
 					game1_maze_output();
