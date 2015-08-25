@@ -12,19 +12,17 @@ lines = []
 def game0(line):
 	if line == 'Nano$ enter your answer:':
 		# enter you answer here
-		answer = ''
-		port.write('%s\n' % answer)
+		port.write('%s\n' % 'HITCONNANOGAMEMORSE')
+		# port.write('%s\n' % 'ANSWER')
 		port.flush()
 
 def game1(line):
 	if line == 'Nano$ show map':
 		global lines
-		# here is map
 		lines = lines[-3:]
 		# for line in lines:
 		# 	print line
-		# write you rules to send [w] [a] [s] [d] here
-
+		# write you rules here
 		port.write('d\n')
 		port.flush()
 	else:
@@ -34,9 +32,25 @@ def game2(line):
 	if line == 'Nano$ enter your answer:':
 		global lines
 		lines = lines[-1:]
+		# write you rules here
+		line = lines[0].replace(' ', '').replace('Nano$', '').replace('=?', '')
+		while True:
+			match_line = re.search(r'(\d+\*\d+)', line)
+			if match_line:
+				for group in match_line.groups():
+					print group
+					match_prod = re.search(r'(?P<num1>\d+)\*(?P<num2>\d+)', group)
+					num1 = int(match_prod.group('num1'))
+					num2 = int(match_prod.group('num2'))
+					line = line.replace(group, str(num1 * num2))
+			else:
+				break
 		total = 0
-		# write you rules to calculate answer here
-
+		line = line.replace('+', ' +')
+		line = line.replace('-', ' -')
+		items = line.split(' ')
+		for item in items:
+			total += int(item)
 		port.write('%d\n' % total)
 		port.flush()
 	else:
